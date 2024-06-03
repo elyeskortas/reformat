@@ -1,0 +1,57 @@
+/* Container styling */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Candidat card styling */
+  .candidat-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Candidat card hover effect */
+  .candidat-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Candidat name styling */
+  .candidat-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  /* Candidat email styling */
+  .candidat-email {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* Separator styling */
+  hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 1rem 0;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    .container {
+      padding: 1.5rem;
+    }
+  
+    .candidat-card {
+      padding: 0.75rem;
+    }
+  }
+  

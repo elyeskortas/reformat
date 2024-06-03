@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Liste des élections</h2>
+  <ul>
+    <li *ngFor="let election of elections">
+      {{ election.nom }} - Du {{ election.dateDebut }} au {{ election.dateFin }}
+    </li>
+  </ul>
+</div>

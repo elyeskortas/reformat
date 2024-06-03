@@ -1,0 +1,8 @@
+<nav>
+  <div>
+    <a routerLink="/candidats">Candidats</a>
+    <a routerLink="/electeurs">Électeurs</a>
+    <a routerLink="/elections">Élections</a>
+  </div>
+  <button *ngIf="authService.isAuthenticated()" (click)="logout()">Déconnexion</button>
+</nav>

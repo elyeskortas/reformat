@@ -1,0 +1,63 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .stat h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .stat p {
+    margin: 0;
+    color: #666;
+  }
+  
+  .chart-container {
+    margin-bottom: 20px;
+  }
+  
+  .mat-card {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .mat-card-header {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .mat-card-title {
+    padding: 10px;
+    font-size: 20px;
+  }
+  
+  .mat-card-content {
+    padding: 10px;
+    color: #333;
+  }
+  

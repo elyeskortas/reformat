@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Liste des votes par électeur</h2>
+    <ul>
+      <li *ngFor="let vote of votes">
+        {{ vote.electeurId }} - {{ vote.candidatId }} - {{ vote.electionId }}
+      </li>
+    </ul>
+  </div>
+  

@@ -1,0 +1,48 @@
+/* Container styling */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Navigation links styling */
+  .container a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .container a:hover {
+    color: #0056b3;
+  }
+  
+  /* Active link styling */
+  .container a.active {
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  /* Router outlet styling */
+  router-outlet {
+    display: block;
+    padding: 2rem;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .container a {
+      margin: 0.5rem 0;
+    }
+  }
+  

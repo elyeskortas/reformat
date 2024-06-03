@@ -1,0 +1,11 @@
+<!-- notification.component.html -->
+
+<div class="notifications">
+    <div class="notification" *ngFor="let notification of notifications">
+      <p>{{ notification.message }}</p>
+      <p>{{ notification.date | date }}</p>
+      <button (click)="markAsRead(notification.id)">Marquer comme lu</button>
+      <button (click)="deleteNotification(notification.id)">Supprimer</button>
+    </div>
+  </div>
+  

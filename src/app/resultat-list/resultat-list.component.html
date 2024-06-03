@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Résultats</h2>
+    <button (click)="loadAllResultats()">Tous les résultats</button>
+    <!-- Ajoutez des boutons ou des sélecteurs pour choisir une élection -->
+    <button (click)="loadResultatsByElection(electionId)">Résultats par élection</button>
+    <p *ngIf="resultats.length === 0">Aucun résultat trouvé</p>
+    <div *ngFor="let resultat of resultats">
+      <!-- Afficher les détails du résultat ici -->
+    </div>
+  </div>
+  
