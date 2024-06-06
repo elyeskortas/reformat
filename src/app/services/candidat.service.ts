@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Ajoutez HttpHeaders
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Candidat } from '../models/candidat.model';
 
@@ -11,15 +11,28 @@ export class CandidatService {
 
   constructor(private http: HttpClient) { }
 
+  private getToken(): string | null {
+    const tokenObject = localStorage.getItem('token');
+    if (!tokenObject) {
+      console.error('Token JWT non trouvé');
+      throw new Error('Token JWT non trouvé');
+    }
+    const parsedToken = JSON.parse(tokenObject);
+    return parsedToken.token; // Assuming the actual token is stored in the 'token' field
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
   getAllCandidats(): Observable<Candidat[]> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<Candidat[]>(`${this.baseUrl}`, { headers });
+    const headers = this.getHeaders();
+    return this.http.get<Candidat[]>(this.baseUrl, { headers });
   }
 
   getTotalCandidats(): Observable<number> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>(`${this.baseUrl}/count`, { headers });
+    const headers = this.getHeaders();
+    return this.http.get<number>(this.baseUrl, { headers });
   }
 }

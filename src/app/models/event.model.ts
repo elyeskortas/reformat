@@ -9,5 +9,6 @@ export interface Event {
     isPaused: boolean;
     electionId: number;
     restrictionId: number;
+    photoUrl?: string;
   }
   

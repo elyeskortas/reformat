@@ -1,24 +1,27 @@
+<!-- dashboard.component.html -->
 <div class="container">
-    <h2>Tableau de Bord</h2>
-  
-    <div class="stats">
-      <div class="stat">
-        <h3>{{ totalCandidats }}</h3>
-        <p>Candidats</p>
-      </div>
-      <div class="stat">
-        <h3>{{ totalElecteurs }}</h3>
-        <p>Électeurs</p>
-      </div>
-      <div class="stat">
-        <h3>{{ totalElections }}</h3>
-        <p>Élections</p>
-      </div>
+  <h2>Tableau de Bord</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <h3>{{ totalCandidats }}</h3>
+      <p>Candidats</p>
     </div>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-      </div>
-      <!-- Notifications avec Angular Material -->
+    <div class="stat">
+      <h3>{{ totalElecteurs }}</h3>
+      <p>Électeurs</p>
+    </div>
+    <div class="stat">
+      <h3>{{ totalElections }}</h3>
+      <p>Élections</p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <!-- Notifications avec Angular Material -->
   <mat-card>
     <mat-card-header>
       <mat-card-title>Notifications</mat-card-title>
@@ -27,8 +30,14 @@
       <p>Affichez ici vos notifications et alertes pour les événements importants.</p>
     </mat-card-content>
   </mat-card>
-  
-    <!-- Ajoutez ici vos graphiques et vos notifications -->
-  
+
+  <div class="container">
+    <h2>Résultats du Dernier Événement</h2>
+    <div *ngFor="let resultat of resultats" class="resultat-card">
+      <p class="candidat-name">{{ resultat.candidat.nom }}</p>
+      <p class="total-votes">Nombre de votes: {{ resultat.totalVotes }}</p>
+      <hr>
+    </div>
+    <canvas id="resultatsChart"></canvas>
   </div>
-  
+</div>

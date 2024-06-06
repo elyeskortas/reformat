@@ -1,7 +1,11 @@
+export interface Candidat {
+  id: number;
+  nom: string;
+  // autres propriétés du candidat
+}
+
 export interface Resultat {
-    id?: number;
-    candidat: string;
-    electionId: number;
-    totalVotes: string;
-  }
-  
+  candidat: Candidat;
+  totalVotes: number;
+  // autres propriétés du résultat
+}

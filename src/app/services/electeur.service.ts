@@ -11,25 +11,28 @@ export class ElecteurService {
 
   constructor(private http: HttpClient) { }
 
-  getAllElecteurs(): Observable<Electeur[]> {
-    // Récupérer le token JWT du stockage local
-    const token = localStorage.getItem('token');
-    
-    // Créer les en-têtes avec le token JWT
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  private getToken(): string | null {
+    const tokenObject = localStorage.getItem('token');
+    if (!tokenObject) {
+      console.error('Token JWT non trouvé');
+      throw new Error('Token JWT non trouvé');
+    }
+    const parsedToken = JSON.parse(tokenObject);
+    return parsedToken.token; // Assuming the actual token is stored in the 'token' field
+  }
 
-    // Inclure les en-têtes dans la requête HTTP
-    return this.http.get<Electeur[]>(`${this.baseUrl}`, { headers });
+  private getHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
+  getAllElecteurs(): Observable<Electeur[]> {
+    const headers = this.getHeaders();
+    return this.http.get<Electeur[]>(this.baseUrl, { headers });
   }
 
   getTotalElecteurs(): Observable<number> {
-    // Récupérer le token JWT du stockage local
-    const token = localStorage.getItem('token');
-    
-    // Créer les en-têtes avec le token JWT
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    // Inclure les en-têtes dans la requête HTTP
-    return this.http.get<number>(`${this.baseUrl}/count`, { headers });
+    const headers = this.getHeaders();
+    return this.http.get<number>(this.baseUrl, { headers });
   }
 }

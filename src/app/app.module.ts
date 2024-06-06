@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminListComponent } from './admin-list/admin-list.component';
-import { EventCreateComponent } from './event-create/event-create.component';
+import { EventCreateComponent } from './event-create/event-create.component'; // Import the component
 import { ResultatListComponent } from './resultat-list/resultat-list.component';
 import { VoteListComponent } from './vote-list/vote-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,6 +18,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotificationComponent } from './notification/notification.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +33,16 @@ import { NotificationComponent } from './notification/notification.component';
     LoginComponent,
     ForgotPasswordComponent,
     AdminListComponent,
-    EventCreateComponent,
+    EventCreateComponent, // Declare the component
     ResultatListComponent,
     VoteListComponent,
     DashboardComponent,
-    NotificationComponent
+    NotificationComponent,
+    UserListComponent,
+    UserDetailComponent,
+    UserAddComponent,
+    UserEditComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +55,6 @@ import { NotificationComponent } from './notification/notification.component';
     MatButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

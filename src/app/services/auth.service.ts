@@ -15,9 +15,11 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     
     return this.http.post<{success:  string}>(`${this.apiUrl}/login`, { email, password }).pipe(
+      
       tap(
         response => {
         console.log('Full login response:', response); // Log the full response for debugging
+        
         if (response && response.success) 
           {
           localStorage.setItem(this.tokenKey, JSON.stringify(response.success));

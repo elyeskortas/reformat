@@ -1,8 +1,11 @@
+// components/dashboard.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import { CandidatService } from '../services/candidat.service';
 import { ElecteurService } from '../services/electeur.service';
 import { ElectionService } from '../services/election.service';
+import { ResultatService } from '../services/resultat.service';
+import { Resultat } from '../models/resultat.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,22 +16,54 @@ export class DashboardComponent implements OnInit {
   totalCandidats: number = 0;
   totalElecteurs: number = 0;
   totalElections: number = 0;
+  resultats: Resultat[] = [];
 
   constructor(
     private candidatService: CandidatService,
     private electeurService: ElecteurService,
-    private electionService: ElectionService
-  ) { }
-
-  ngOnInit(): void {
-    this.loadStatistics();
-    this.generateChart();
+    private electionService: ElectionService,
+    private resultatService: ResultatService
+  ) {
+    // Register Chart.js components
+    Chart.register(...registerables);
   }
 
-  loadStatistics(): void {
-    this.candidatService.getTotalCandidats().subscribe(count => this.totalCandidats = count);
-    this.electeurService.getTotalElecteurs().subscribe(count => this.totalElecteurs = count);
-    this.electionService.getTotalElections().subscribe(count => this.totalElections = count);
+  ngOnInit(): void {
+    this.loadStatistics().then(() => {
+      this.generateChart();
+      this.getLastElectionResults();
+    });
+  }
+  
+  async loadStatistics(): Promise<void> {
+    try {
+      const candidatsResponse = await this.candidatService.getTotalCandidats().toPromise();
+      console.log('Réponse des candidats:', candidatsResponse);
+  
+      const electeursResponse = await this.electeurService.getTotalElecteurs().toPromise();
+      console.log('Réponse des électeurs:', electeursResponse);
+  
+      const electionsResponse = await this.electionService.getTotalElections().toPromise();
+      console.log('Réponse des élections:', electionsResponse);
+  
+      // Assigner les valeurs seulement si les réponses sont des nombres
+      if (typeof candidatsResponse === 'number') {
+        this.totalCandidats = candidatsResponse;
+      }
+      if (typeof electeursResponse === 'number') {
+        this.totalElecteurs = electeursResponse;
+      }
+      if (typeof electionsResponse === 'number') {
+        this.totalElections = electionsResponse;
+      }
+    } catch (error) {
+      console.error('Une erreur est survenue lors du chargement des statistiques :', error);
+    }
+  }
+
+  getLastElectionResults(): void {
+    this.resultatService.getLastElectionResultats()
+      .subscribe(resultats => this.resultats = resultats);
   }
 
   generateChart(): void {
@@ -61,6 +96,4 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
-  }
-}
-
+  }}

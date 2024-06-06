@@ -1,10 +1,14 @@
-<!-- event-create.component.html -->
-<div class="container">
+<!-- src/app/event-create/event-create.component.html -->
+  <div class="container">
     <h2>Créer un événement électoral</h2>
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="name">Nom de l'événement</label>
         <input id="name" formControlName="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control" required></textarea>
       </div>
       <div class="form-group">
         <label for="dateStart">Date de début</label>
@@ -14,7 +18,42 @@
         <label for="dateEnd">Date de fin</label>
         <input id="dateEnd" formControlName="dateEnd" class="form-control" type="date" required>
       </div>
+      <div class="form-group">
+        <label for="photo">Photo</label>
+        <input id="photo" formControlName="photo" class="form-control" type="file" (change)="onFileChange($event)">
+      </div>
       <button type="submit" class="btn btn-primary">Créer</button>
     </form>
   </div>
   
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <h3>Événements en cours</h3>
+  <div *ngIf="ongoingEvents.length === 0" class="alert alert-info">
+    Aucun événement en cours.
+  </div>
+  <div *ngFor="let event of ongoingEvents" class="event-card">
+    <p class="event-name">{{ event.nom }}</p>
+    <p class="event-dates">Du {{ event.startDate }} au {{ event.endDate }}</p>
+  </div>
+
+  <h3>Événements à venir</h3>
+  <div *ngIf="upcomingEvents.length === 0" class="alert alert-info">
+    Aucun événement à venir.
+  </div>
+  <div *ngFor="let event of upcomingEvents" class="event-card">
+    <p class="event-name">{{ event.nom }}</p>
+    <p class="event-dates">Du {{ event.startDate }} au {{ event.endDate }}</p>
+  </div>
+
+  <h3>Événements terminés</h3>
+  <div *ngIf="pastEvents.length === 0" class="alert alert-info">
+    Aucun événement terminé.
+  </div>
+  <div *ngFor="let event of pastEvents" class="event-card">
+    <p class="event-name">{{ event.nom }}</p>
+    <p class="event-dates">Du {{ event.startDate }} au {{ event.endDate }}</p>
+  </div>
